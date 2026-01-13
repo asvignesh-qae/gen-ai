@@ -40,5 +40,5 @@ jobs:
         if: always()
         with:
           name: newman-report
-          path: week2/Week2-HA/test-report.html
+          path: ./test-report.html
           retention-days: 30
