@@ -5,8 +5,10 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
+  schedule:
+    # Runs every 12 hours at minute 0 (00:00, 12:00, 24:00 UTC)
+    - cron: "0 */12 * * *"
 jobs:
   api-tests:
     runs-on: ubuntu-latest
