@@ -31,6 +31,7 @@ jobs:
             --env-var "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" \
             -r htmlextra \
             --reporter-htmlextra-export "./test-report.html" \
+            --reporter-htmlextra-showResponseBody all \
             --reporter-htmlextra-skipEnvironmentVars \
             --reporter-htmlextra-skipHeaders \
             --reporter-htmlextra-skipSensitiveData
