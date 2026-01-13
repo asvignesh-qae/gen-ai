@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "newman-test": "npx newman run \"week2/Week2-HA/groq.postman_collection.json\" -e \"week2/Week2-HA/groq.postman_environment.json\" -r htmlextra --reporter-htmlextra-export --reporter-htmlextra-skipEnvironmentVars --reporter-htmlextra-skipSensitiveData true"
+    "newman-test": "npx newman run \"week2/Week2-HA/groq.postman_collection.json\" -e \"week2/Week2-HA/groq.postman_environment.json\" -r htmlextra --reporter-htmlextra-skipEnvironmentVars \"GROQ_API_KEY\" --reporter-htmlextra-skipHeaders \"Authorization\""
   },
   "dependencies": {
     "newman": "^6.2.1",
