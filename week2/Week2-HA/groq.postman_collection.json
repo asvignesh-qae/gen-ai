@@ -1,0 +1,334 @@
+{
+  "info": {
+    "_postman_id": "b4604d2b-a239-44e4-90f5-e924058e46a8",
+    "name": "Gen AI - Postman Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45998330"
+  },
+  "item": [
+    {
+      "name": "HA - S17 - openai/gpt-oss-120b, Temp .1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response matches schema\", function() {\r",
+              "    pm.response.to.have.jsonSchema(pm.environment.get(\"groqResponseSchema\"));\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Extract the DOM from http://leaftaps.com/opentaps/control/login and provide me the Playwright with TS code to validate the login functionality. Instructions: Add the test.describe, test and test.step for each action. Do not use ID if the value has number in it. Provide only TS code wrap the selectors or string in backtick and no explanations needed [STRICTLY PROHIBITED] page.waitForTimeout(), comments in the code, new line character(\\n) and double quotes\"\n    }\n  ],\n  \"model\": \"openai/gpt-oss-120b\",\n  \"temperature\": 0.1\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": ["api", "groq", "com"],
+          "path": ["openai", "v1", "chat", "completions"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HA - S17 - qwen/qwen3-32b, Temp .1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response matches schema\", function() {\r",
+              "    pm.response.to.have.jsonSchema(pm.environment.get(\"groqResponseSchema\"));\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Extract the DOM from http://leaftaps.com/opentaps/control/login and provide me the Playwright with TS code to validate the login functionality. Instructions: Add the test.describe, test and test.step for each action. Do not use ID if the value has number in it. Provide only TS code wrap the selectors or string in backtick and no explanations needed [STRICTLY PROHIBITED] page.waitForTimeout(), comments in the code, new line character(\\n) and double quotes\"\n    }\n  ],\n  \"model\": \"qwen/qwen3-32b\",\n  \"temperature\": 0.1\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": ["api", "groq", "com"],
+          "path": ["openai", "v1", "chat", "completions"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HA - S17 - meta-llama/llama-4-scout-17b-16e-instruct, Temp .1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response matches schema\", function() {\r",
+              "    pm.response.to.have.jsonSchema(pm.environment.get(\"groqResponseSchema\"));\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Extract the DOM from http://leaftaps.com/opentaps/control/login and provide me the Playwright with TS code to validate the login functionality. Instructions: Add the test.describe, test and test.step for each action. Do not use ID if the value has number in it. Provide only TS code wrap the selectors or string in backtick and no explanations needed [STRICTLY PROHIBITED] page.waitForTimeout(), comments in the code, new line character(\\n) and double quotes\"\n    }\n  ],\n  \"model\": \"meta-llama/llama-4-scout-17b-16e-instruct\",\n  \"temperature\": 0.1\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": ["api", "groq", "com"],
+          "path": ["openai", "v1", "chat", "completions"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HA - S17 - moonshotai/kimi-k2-instruct-0905, Temp .1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response matches schema\", function() {\r",
+              "    pm.response.to.have.jsonSchema(pm.environment.get(\"groqResponseSchema\"));\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Extract the DOM from http://leaftaps.com/opentaps/control/login and provide me the Playwright with TS code to validate the login functionality. Instructions: Add the test.describe, test and test.step for each action. Do not use ID if the value has number in it. Provide only TS code wrap the selectors or string in backtick and no explanations needed [STRICTLY PROHIBITED] page.waitForTimeout(), comments in the code, new line character(\\n) and double quotes\"\n    }\n  ],\n  \"model\": \"moonshotai/kimi-k2-instruct-0905\",\n  \"temperature\": 0.1\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": ["api", "groq", "com"],
+          "path": ["openai", "v1", "chat", "completions"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{GROQ_API_KEY}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "const groqResponseSchema = {\r",
+          "  \"title\": \"Generated schema for GROQ Response\",\r",
+          "  \"type\": \"object\",\r",
+          "  \"properties\": {\r",
+          "    \"id\": {\r",
+          "      \"type\": \"string\"\r",
+          "    },\r",
+          "    \"object\": {\r",
+          "      \"type\": \"string\"\r",
+          "    },\r",
+          "    \"created\": {\r",
+          "      \"type\": \"number\"\r",
+          "    },\r",
+          "    \"model\": {\r",
+          "      \"type\": \"string\"\r",
+          "    },\r",
+          "    \"choices\": {\r",
+          "      \"type\": \"array\",\r",
+          "      \"items\": {\r",
+          "        \"type\": \"object\",\r",
+          "        \"properties\": {\r",
+          "          \"index\": {\r",
+          "            \"type\": \"number\"\r",
+          "          },\r",
+          "          \"message\": {\r",
+          "            \"type\": \"object\",\r",
+          "            \"properties\": {\r",
+          "              \"role\": {\r",
+          "                \"type\": \"string\"\r",
+          "              },\r",
+          "              \"content\": {\r",
+          "                \"type\": \"string\"\r",
+          "              }\r",
+          "            },\r",
+          "            \"required\": [\r",
+          "              \"role\",\r",
+          "              \"content\"\r",
+          "            ]\r",
+          "          },\r",
+          "          \"logprobs\": {},\r",
+          "          \"finish_reason\": {\r",
+          "            \"type\": \"string\"\r",
+          "          }\r",
+          "        },\r",
+          "        \"required\": [\r",
+          "          \"index\",\r",
+          "          \"message\",\r",
+          "          \"logprobs\",\r",
+          "          \"finish_reason\"\r",
+          "        ]\r",
+          "      }\r",
+          "    },\r",
+          "    \"usage\": {\r",
+          "      \"type\": \"object\",\r",
+          "      \"properties\": {\r",
+          "        \"queue_time\": {\r",
+          "          \"type\": \"number\"\r",
+          "        },\r",
+          "        \"prompt_tokens\": {\r",
+          "          \"type\": \"number\"\r",
+          "        },\r",
+          "        \"prompt_time\": {\r",
+          "          \"type\": \"number\"\r",
+          "        },\r",
+          "        \"completion_tokens\": {\r",
+          "          \"type\": \"number\"\r",
+          "        },\r",
+          "        \"completion_time\": {\r",
+          "          \"type\": \"number\"\r",
+          "        },\r",
+          "        \"total_tokens\": {\r",
+          "          \"type\": \"number\"\r",
+          "        },\r",
+          "        \"total_time\": {\r",
+          "          \"type\": \"number\"\r",
+          "        }\r",
+          "      },\r",
+          "      \"required\": [\r",
+          "        \"queue_time\",\r",
+          "        \"prompt_tokens\",\r",
+          "        \"prompt_time\",\r",
+          "        \"completion_tokens\",\r",
+          "        \"completion_time\",\r",
+          "        \"total_tokens\",\r",
+          "        \"total_time\"\r",
+          "      ]\r",
+          "    },\r",
+          "    \"usage_breakdown\": {},\r",
+          "    \"system_fingerprint\": {\r",
+          "      \"type\": \"string\"\r",
+          "    },\r",
+          "    \"x_groq\": {\r",
+          "      \"type\": \"object\",\r",
+          "      \"properties\": {\r",
+          "        \"id\": {\r",
+          "          \"type\": \"string\"\r",
+          "        },\r",
+          "        \"seed\": {\r",
+          "          \"type\": \"number\"\r",
+          "        }\r",
+          "      },\r",
+          "      \"required\": [\r",
+          "        \"id\",\r",
+          "        \"seed\"\r",
+          "      ]\r",
+          "    },\r",
+          "    \"service_tier\": {\r",
+          "      \"type\": \"string\"\r",
+          "    }\r",
+          "  },\r",
+          "  \"required\": [\r",
+          "    \"id\",\r",
+          "    \"object\",\r",
+          "    \"created\",\r",
+          "    \"model\",\r",
+          "    \"choices\",\r",
+          "    \"usage\",\r",
+          "    \"usage_breakdown\",\r",
+          "    \"system_fingerprint\",\r",
+          "    \"x_groq\",\r",
+          "    \"service_tier\"\r",
+          "  ]\r",
+          "}\r",
+          "\r",
+          "pm.environment.set(\"groqResponseSchema\", groqResponseSchema);"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [""]
+      }
+    }
+  ]
+}

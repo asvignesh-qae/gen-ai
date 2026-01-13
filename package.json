@@ -1,0 +1,25 @@
+{
+  "name": "gen-ai",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/asvignesh-qae/gen-ai#readme",
+  "bugs": {
+    "url": "https://github.com/asvignesh-qae/gen-ai/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asvignesh-qae/gen-ai.git"
+  },
+  "license": "ISC",
+  "author": "Vignesh",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "newman-test": "npx newman run \"week2/Week2-HA/groq.postman_collection.json\" -e \"week2/Week2-HA/groq.postman_environment.json\" -r htmlextra --reporter-htmlextra-export --reporter-htmlextra-skipEnvironmentVars --reporter-htmlextra-skipSensitiveData true"
+  },
+  "dependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}
