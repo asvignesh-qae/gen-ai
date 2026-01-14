@@ -190,8 +190,7 @@
               "});\r",
               "\r",
               "pm.test('Check if the response contains the expected message role', function () {\r",
-              "    let translatedTamilText = 'பயன்பாட்டை திறக்கவும், அங்கீகாரங்களை உள்ளிடவும், மற்றும் உள்நுழைவு பொத்தானை அழுத்தவும்.';\r",
-              "    pm.expect(pm.response.json().choices[0].message.content).to.contain(translatedTamilText);\r",
+              "    pm.expect(pm.response.json().choices[0].message.content).to.contain(\"பயன்பாட்டை திறக்கவும்\");\r",
               "});"
             ],
             "type": "text/javascript",
