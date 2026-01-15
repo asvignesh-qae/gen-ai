@@ -40,6 +40,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: newman-report
+          name: Home Assignment API Test Report
           path: ./test-report.html
           retention-days: 30

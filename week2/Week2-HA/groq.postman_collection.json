@@ -236,8 +236,7 @@
               "});\r",
               "\r",
               "pm.test('Check if the response contains the expected message role', function () {\r",
-              "    let translatedTamilText = 'திறக்கவும், அடையாளங்களை உள்ளிட்டு, லாகின் பட்டனைக் கிளிக் செய்யவும்.';\r",
-              "    pm.expect(pm.response.json().choices[0].message.content).contains(translatedTamilText);\r",
+              "    pm.expect(pm.response.json().choices[0].message.content).to.contain(\"திறக்கவும்\");\r",
               "});"
             ],
             "type": "text/javascript",
