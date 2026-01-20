@@ -38,7 +38,7 @@ def execute_prompt(task, context, references, evaluate, iterate):
 ### Parameter Mapping
 
 | Parameter    | Purpose                            |
-|--------------|------------------------------------|
+| ------------ | ---------------------------------- |
 | `task`       | The Instruction / Function Body    |
 | `context`    | Environment Variables / Background |
 | `references` | Few-Shot Training Data             |
@@ -52,7 +52,7 @@ Create a detailed slide deck with a brief overview and explanation of all the pr
 ### Specifications
 
 | Element      | Description                                       |
-|--------------|---------------------------------------------------|
+| ------------ | ------------------------------------------------- |
 | **Task**     | Create a slide deck                               |
 | **Context**  | You are a Professional AI Engineer                |
 | **Output**   | At least 20 slides or pages in PPT or PDF format  |
@@ -203,9 +203,15 @@ LLM generates results that are close to the expected outcome.
 
 ---
 
-### COT Example: Generate Daily Status Report (DSR)
+### Real-time COT Example 1: Generate Daily Status Report (DSR)
 
 [View Example on Claude](https://claude.ai/share/94bdbb6b-b46e-4275-984e-5d03d77e9475)
+
+---
+
+### Real-time COT Example 2: Design a Test Strategy Document
+
+[View Example on Claude](https://claude.ai/share/70aa3521-5585-4483-aa3b-86d0ca9b3243)
 
 ---
 
@@ -229,7 +235,7 @@ The ABI (Always Be Iterating) algorithm is a systematic debugging framework for 
 When outputs fall short, apply one of these debugging strategies:
 
 | Strategy                    | Description                                           | Example                                        |
-|-----------------------------|-------------------------------------------------------|------------------------------------------------|
+| --------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
 | **A. Decomposition**        | Break complex requests into smaller, sequential steps | "Summarize → Create graph → Format as bullets" |
 | **B. Analogous Tasks**      | Reframe your problem using different terminology      | Change "Marketing Plan" to "Customer Story"    |
 | **C. Constraint Injection** | Add explicit boundaries or negative instructions      | "Exclude artists from region X"                |
@@ -448,22 +454,22 @@ CONSTRAINTS:
 
 #### Real-World Case: Writing a Resume
 
-| Round | Action               | Prompt                                                                                                                        | Result                                 | Match Intent?        |
-|-------|----------------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|----------------------|
-| 1     | Execute              | "Write my resume."                                                                                                            | Generic template with placeholder text | NO → Select Strategy |
-| 2     | Decomposition        | "1. List work experience at Company X 2. Highlight achievements with metrics 3. Add technical skills 4. Format for ATS"      | Better, but skills section too long    | NO → Select Strategy |
-| 3     | Constraint Injection | "Same as above, BUT: Limit skills to top 8 for Data Analyst roles, Exclude outdated tech, Prioritize Python/SQL/Tableau"     | Clean, focused, ATS-friendly resume    | **YES → DEPLOY!**    |
+| Round | Action               | Prompt                                                                                                                   | Result                                 | Match Intent?        |
+| ----- | -------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- | -------------------- |
+| 1     | Execute              | "Write my resume."                                                                                                       | Generic template with placeholder text | NO → Select Strategy |
+| 2     | Decomposition        | "1. List work experience at Company X 2. Highlight achievements with metrics 3. Add technical skills 4. Format for ATS"  | Better, but skills section too long    | NO → Select Strategy |
+| 3     | Constraint Injection | "Same as above, BUT: Limit skills to top 8 for Data Analyst roles, Exclude outdated tech, Prioritize Python/SQL/Tableau" | Clean, focused, ATS-friendly resume    | **YES → DEPLOY!**    |
 
 ---
 
 ### Key Takeaways
 
-| #   | Insight                                                                                                                                                       |
-|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | **First attempt rarely perfect** - The ABI loop expects iteration                                                                                             |
-| 2   | **Choose strategy based on problem type:** Too vague? → Decomposition / Wrong angle? → Analogous Tasks / Too much noise? → Constraint Injection              |
-| 3   | **Strategies can be combined** - Use multiple approaches in sequence                                                                                          |
-| 4   | **Each iteration refines** - You learn what works and adjust                                                                                                  |
+| #   | Insight                                                                                                                                         |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **First attempt rarely perfect** - The ABI loop expects iteration                                                                               |
+| 2   | **Choose strategy based on problem type:** Too vague? → Decomposition / Wrong angle? → Analogous Tasks / Too much noise? → Constraint Injection |
+| 3   | **Strategies can be combined** - Use multiple approaches in sequence                                                                            |
+| 4   | **Each iteration refines** - You learn what works and adjust                                                                                    |
 
 ---
 
@@ -488,7 +494,7 @@ Choose based on whether you want structured learning (A) or simpler, constrained
 
 ---
 
-> *The ABI algorithm turns prompt engineering from guesswork into a systematic debugging process.*
+> _The ABI algorithm turns prompt engineering from guesswork into a systematic debugging process._
 
 ---
 
@@ -552,7 +558,7 @@ No review comments.
 ### Evaluation Matrix
 
 | Dimension             | Status      | Reason                                                                            |
-|-----------------------|-------------|-----------------------------------------------------------------------------------|
+| --------------------- | ----------- | --------------------------------------------------------------------------------- |
 | **Safety**            | Not Safe    | Encourages hardcoded credentials, credential leakage, and suppression of failures |
 | **Alignment**         | Not Aligned | Explicitly instructs to ignore best practices, security, and correctness          |
 | **Bias**              | Biased      | Promotes reckless engineering behavior and unethical shortcuts                    |
