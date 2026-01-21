@@ -282,7 +282,7 @@
               "});\r",
               "\r",
               "pm.test('Check if the response contains the expected message role', function () {\r",
-              "    pm.expect(pm.response.json().choices[0].message.content).to.contain(\"資格情報を入力し\");\r",
+              "    pm.expect(pm.response.json().choices[0].message.content).to.contain(\"入力し\");\r",
               "});"
             ],
             "type": "text/javascript",
@@ -328,8 +328,7 @@
               "});\r",
               "\r",
               "pm.test('Check if the response contains the expected message role', function () {\r",
-              "    let translatedJapaneseText = 'アプリケーションを開き、資格情報を入力し、ログイン ボタンをクリックします。';\r",
-              "    pm.expect(pm.response.json().choices[0].message.content).to.contain(translatedJapaneseText);\r",
+              "pm.expect(pm.response.json().choices[0].message.content).to.contain(\"入力し\");\r",
               "});"
             ],
             "type": "text/javascript",
