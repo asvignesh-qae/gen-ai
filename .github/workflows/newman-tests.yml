@@ -31,6 +31,7 @@ jobs:
           npx newman run "week2/Week2-HA/groq.postman_collection.json" \
             -e "week2/Week2-HA/groq.postman_environment.json" \
             --env-var "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" \
+            --verbose \
             -r htmlextra \
             --reporter-htmlextra-export "./test-report.html" \
             --reporter-htmlextra-skipEnvironmentVars GROQ_API_KEY \
