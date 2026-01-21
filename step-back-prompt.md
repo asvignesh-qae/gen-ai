@@ -88,7 +88,7 @@ await page.locator(">>> button.submit").click();
 ## Visual Comparison
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph Traditional["Direct Prompting"]
         direction TB
         A1([Question]):::question --> A2[Direct Reasoning]:::process

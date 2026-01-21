@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [The Core Function Signature](#the-core-function-signature)
-2. [Project Overview](#project-overview)
+2. [Prompt Example Overview](#prompt-example-overview)
 3. [ICEPOT Framework Examples](#icepot-framework-examples)
 4. [Chain of Thought (COT) Prompting](#chain-of-thought-cot-prompting)
 5. [ABI Algorithm: Always Be Iterating](#abi-algorithm-always-be-iterating)
@@ -45,7 +45,7 @@ def execute_prompt(task, context, references, evaluate, iterate):
 | `evaluate`   | Unit Testing                       |
 | `iterate`    | Refactoring / Debugging            |
 
-## Project Overview
+## Prompt Example Overview
 
 Create a detailed slide deck with a brief overview and explanation of all the prompting techniques explained in the video.
 
@@ -137,6 +137,13 @@ flowchart TD
 
     Note1[/"Forcing intermediate reasoning steps<br/>reduces logic errors."/]
     Note1 -.-> B
+
+    style A fill:#3B82F6,stroke:#1D4ED8,color:#FFFFFF,stroke-width:2px
+    style B fill:#8B5CF6,stroke:#6D28D9,color:#FFFFFF,stroke-width:2px
+    style C fill:#F97316,stroke:#EA580C,color:#FFFFFF,stroke-width:2px
+    style D fill:#F59E0B,stroke:#D97706,color:#FFFFFF,stroke-width:2px
+    style E fill:#10B981,stroke:#059669,color:#FFFFFF,stroke-width:2px
+    style Note1 fill:#FEF3C7,stroke:#F59E0B,color:#92400E,stroke-width:1px
 ```
 
 **Key Insight:** COT forces the model to show its work through intermediate reasoning steps, reducing logic errors and improving accuracy.
@@ -157,6 +164,14 @@ flowchart TD
 
     Note1[/"Exploration of multiple solution<br/>paths before selection."/]
     Note1 -.-> E
+
+    style A fill:#3B82F6,stroke:#1D4ED8,color:#FFFFFF,stroke-width:2px
+    style B fill:#EC4899,stroke:#DB2777,color:#FFFFFF,stroke-width:2px
+    style C fill:#8B5CF6,stroke:#6D28D9,color:#FFFFFF,stroke-width:2px
+    style D fill:#F97316,stroke:#EA580C,color:#FFFFFF,stroke-width:2px
+    style E fill:#FBBF24,stroke:#F59E0B,color:#78350F,stroke-width:2px
+    style F fill:#10B981,stroke:#059669,color:#FFFFFF,stroke-width:2px
+    style Note1 fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF,stroke-width:1px
 ```
 
 **Key Insight:** TOT explores multiple solution paths simultaneously, evaluates each branch, then selects the best path forward.
