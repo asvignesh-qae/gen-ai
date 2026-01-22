@@ -1,0 +1,119 @@
+[33mcommit 421b8556ba0fafcaa3d7a6af73c8a26e2974f5d4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Thu Jan 22 16:57:54 2026 +0100
+
+    Update the folders
+
+[33mcommit 06bbbf4e2b2933431a6bbc636fbd1016548e5117[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Thu Jan 22 16:54:26 2026 +0100
+
+    Add the updated videos
+
+[33mcommit 302b46bfc71ea6e91754f437d082dbe4166d3732[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Thu Jan 22 16:39:50 2026 +0100
+
+    Add the videos
+
+[33mcommit 33595abaa81c2c06dd7f8baf20872f3d36bfd4fb[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 21 17:35:39 2026 +0100
+
+    Fix the Japanese translation text
+
+[33mcommit 9fa17e7474484fbc06fa61af4ecf31ffa276e3eb[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 21 16:38:37 2026 +0100
+
+    Update the test
+
+[33mcommit 954d09ec5eb568a74704060cc6a70aa79a6ac577[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 21 16:34:33 2026 +0100
+
+    Add the retry logic
+
+[33mcommit d0baba461603e3ccb13dfe42a1e5b281da30969f[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 21 14:36:18 2026 +0100
+
+    Update the prompting techniques
+
+[33mcommit 3de2a42ec4bd73ad938cdcbc4331e68ebb5d1c33[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Tue Jan 20 23:19:44 2026 +0100
+
+    Update the COT with more examples
+
+[33mcommit 356a4f7ddcaca429164224857aaaa6181ac1317c[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Tue Jan 20 23:04:25 2026 +0100
+
+    Add notes to Prompting techniques
+
+[33mcommit a6343b21d1671467246fa253f73373c211700964[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Thu Jan 15 16:05:35 2026 +0100
+
+    Update the test validation points
+
+[33mcommit ecfeb4d76a98c35e968b1dbdb617d77137e9df4d[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 14 22:24:43 2026 +0100
+
+    Update the tests with proper assertions
+
+[33mcommit 927a73e723c2dfd82f134bcd32a84d1d7c527d3e[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 14 17:33:46 2026 +0100
+
+    Fix the path of the file
+
+[33mcommit ffdb0e9b48edcc979697d3ae93420ddbf1fb5348[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 14 17:29:17 2026 +0100
+
+    Home Assignment Week 2
+
+[33mcommit 470fa01e26f17b170df71efcb518691c0b7e206e[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 14 00:25:22 2026 +0100
+
+    schedule the job
+
+[33mcommit 4046a21bc7467ff2f376eae6d4b90aedf0bae049[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 14 00:12:57 2026 +0100
+
+    Fix the error
+
+[33mcommit 3045863fb26f567d438d4c3fe76854eb116f7362[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 14 00:09:09 2026 +0100
+
+    Fix the key
+
+[33mcommit 1c3974623c8bbb20e8eaa7af3cb83b8218bf4322[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Tue Jan 13 23:42:15 2026 +0100
+
+    Fix the response in the report
+
+[33mcommit 158dee08f7ccadc52f461a3b98a517b7d7a55081[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Tue Jan 13 23:36:53 2026 +0100
+
+    fix the report
+
+[33mcommit 3fa92ec9a89aed4f42ce04b7fbd2c82748fb82bb[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Tue Jan 13 23:32:22 2026 +0100
+
+    Add the tests to run in CI/CD pipeline
+
+[33mcommit 092556be59a511b2145151263a53eefeef27ad9e[m
+Author: Java Upgrade Bot <upgrade@example.com>
+Date:   Wed Jan 7 14:12:50 2026 +0100
+
+    Week1 Assignment
