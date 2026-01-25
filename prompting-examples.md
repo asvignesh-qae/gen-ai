@@ -63,7 +63,7 @@ and make changes if it's not up to the industry standards and doesn't follow bes
 
 > **Technique:** Uses multiple structured elements - **I**nstructions, **C**ontext, **E**xample, **T**one, **O**utput, **P**ersona - for comprehensive guidance.
 
-### Example: Code Review for Junior Developer
+### Code Review for Junior Developer
 
 **Example:**
 
@@ -111,6 +111,100 @@ function isPangram(string) {
 | **Tone**    | [STRICTLY] Professional tone in review comments and summary                              |
 | **Output**  | Only code without any markdown or extra text                                             |
 | **Persona** | Act as a Test Automation Architect to review the test cases and give the review comments |
+
+---
+
+## 6. Prompt to NoteBookLM
+
+[TASK]
+Create a detailed slide-by-slide deck explaining different prompting techniques using the attached source file.
+
+[OUTPUT FORMAT]
+
+- Minimum 15 slides
+- Each slide must include:
+  - Slide Title
+  - Key Explanation (3–5 bullet points)
+  - Simple Example (junior-friendly)
+  - Before/After prompt comparisons
+  - Suggested Visual (diagram / flowchart / illustration description)
+  - Optional Speaker Notes (1–2 lines)
+
+[CONTENT REQUIREMENTS]
+
+- Explain each prompting technique briefly and clearly
+- Use simple, real-world examples suitable for junior developers or testers
+- Avoid abstract or overly technical language
+- Examples must be self-explanatory without external context
+
+[VISUAL GUIDANCE]
+
+- Do NOT generate images
+- Provide clear suggestions for visuals such as:
+  - Flowcharts
+  - Prompt-response diagrams
+  - Before/After prompt comparisons
+
+[AUDIENCE]
+Junior developers and QA testers with basic AI awareness
+
+[ROLE & VALIDATION]
+You are acting as a Senior AI Architect.
+After drafting the slides:
+
+- Review every example for simplicity and clarity
+- Rewrite any example that may confuse a junior audience
+- Ensure consistency in terminology and structure across slides
+
+[TONE]
+Enthusiastic, instructional, and professional
+
+---
+
+## 7. Prompt to comeup with Test Cases for Edge Cases
+
+[TASK]
+
+Analyze the provided user story and identify exactly three high-risk edge cases
+where the implementation could break or behave unexpectedly once developed.
+
+[OUTPUT FORMAT]
+
+For each edge case, provide:
+
+- Edge Case Title
+- Risk Description (why this scenario is high-risk)
+- Conditions / Inputs that trigger the edge case
+- Expected Behavior (as per the user story)
+- Potential Failure Behavior (what could go wrong in implementation)
+- Priority (High / Medium / Low, based on impact and likelihood)
+
+[CONTENT REQUIREMENTS]
+
+- Focus on boundary conditions, invalid states, and real-world failure scenarios
+- Exclude happy-path and obvious functional scenarios
+- Ensure edge cases are clearly distinct and non-overlapping
+- Use simple, precise language suitable for developers and QA engineers
+
+[VALIDATION CRITERIA]
+
+- Edge cases must be realistic and technically feasible
+- Risks must be inferred from the user story and typical implementation patterns
+- Each edge case must clearly justify why it is considered high-risk
+
+[ROLE]
+
+You are acting as a Senior QA Engineer performing risk-based analysis
+before creating test cases.
+
+[TONE]
+
+Professional, analytical, and concise
+
+[Constraints]
+
+- Only write test cases for the identified edge cases
+- Do not include happy path test cases and negative test cases
 
 ---
 
