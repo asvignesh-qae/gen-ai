@@ -1,0 +1,194 @@
+{
+  "info": {
+    "_postman_id": "ea65e437-e9d3-4f79-b548-d421906f65dc",
+    "name": "LangFlow - HA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45998330"
+  },
+  "item": [
+    {
+      "name": "Extract-Text-From-File",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{LANGFLOW_API_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"output_type\": \"text\",\r\n    \"input_type\": \"text\",\r\n    \"input_value\": \"\",\r\n    \"session_id\": \"4baa2e7c-a32b-438c-8468-05385090bfbd\",\r\n    \"tweaks\": {\r\n        \"File-zs2tS\": {\r\n            \"path\": [\r\n                \"{{file_path}}\"\r\n            ]\r\n        },\r\n        \"Prompt Template-rPsa8\": {\r\n            \"template\": \"Answer the user question:\\n\\n{input}\\n\\n1. From the document, extract the Traveler details\\n2. From the document, extract the Travel details\",\r\n            \"tool_placeholder\": \"\"\r\n        },\r\n        \"GroqModel-8Rcev\": {\r\n            \"api_key\": \"groq_api_key_new\",\r\n            \"base_url\": \"https://api.groq.com\",\r\n            \"model_name\": \"meta-llama/llama-4-maverick-17b-128e-instruct\",\r\n            \"n\": null,\r\n            \"system_message\": \"You are an AI assistant specialized in extracting structured information from travel documents. Be precise and thorough.\",\r\n            \"temperature\": 0.1\r\n        }\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/v1/run/180034b7-d084-470f-bafd-4069dbe67ad9",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "run",
+            "180034b7-d084-470f-bafd-4069dbe67ad9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "File Upload",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "pm.environment.set(\"file_path\", pm.response.json().path.replace(/\\\\/g, \"/\"));"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{LANGFLOW_API_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "373e8384-ccca-429c-ad1b-600370c68f65",
+              "src": "/C:/Users/divya/Downloads/IRCTC_Booking.pdf"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/v2/files",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "files"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Banking-Test-Case-Generator-Agent",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.environment.set(\"chat_input_value\", \"Generate the test cases for Raiffeisan Bank Login page\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{LANGFLOW_API_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"output_type\": \"chat\",\r\n    \"input_type\": \"chat\",\r\n    \"tweaks\": {\r\n        \"ChatInput-m16Fq\": {\r\n            \"input_value\": \"{{chat_input_value}}\",\r\n            \"sender\": \"User\",\r\n            \"sender_name\": \"Test Case Generator BOT\",\r\n            \"should_store_message\": true\r\n        },\r\n        \"Prompt Template-kQVcu\": {\r\n            \"template\": \"Strict Test Case Generator\\n\\nI – Instruction\\n\\nYou are a Test Case Generation Engine.\\n\\nYour task is to generate high-quality, detailed test cases ONLY when the user explicitly asks for test cases related to a valid software/system functionality.\\n\\nYou must cover:\\n- Positive scenarios\\n- Negative scenarios\\n- Validation scenarios\\n- Boundary conditions\\n- Error and failure handling\\n\\nCRITICAL RULES (Non-Negotiable):\\n1. If the input does NOT ask for test cases, respond ONLY with:\\n   \\\"Out of scope: The request does not ask for test case generation.\\\"\\n2. Do NOT provide explanations, summaries, opinions, or examples if test cases are not explicitly requested.\\n3. Check for unsafe or prohibited content (security abuse, fraud enablement, hacking, illegal activity).\\n   - If unsafe, respond:\\n     \\\"Out of scope: The request contains unsafe or prohibited content.\\\"\\n4. Do NOT assume intent.\\n5. Do NOT infer requirements.\\n6. Do NOT expand scope.\\n\\nC – Context\\n\\nYou are an AI Assistant with deep expertise in Banking, Insurance, and Financial Systems, including:\\n- Payments, Cards, UPI, Net Banking\\n- Core Banking, Loans, Accounts\\n- Insurance Policies, Claims, Premiums\\n- Regulatory, Compliance, and Risk Controls\\n\\nIf the input is outside these domains or not related to functional testing, treat it as out of scope.\\n\\nE – Example (Reference Format Only)\\n\\nTest Case ID: TC_BT_001\\nTitle: Verify successful fund transfer within daily limit\\nPreconditions: User is logged in with an active account\\nSteps:\\n1. Navigate to Fund Transfer\\n2. Enter beneficiary details\\n3. Enter amount within daily limit\\n4. Submit transaction\\nExpected Result: Transaction completes successfully and confirmation is shown\\n\\n(Do NOT reuse this example in output unless explicitly applicable.)\\n\\nO – Output Rules\\n\\nONLY when the input is a valid test-case request, generate exactly 5 test cases.\\n\\nEach test case MUST include:\\n- Test Case ID\\n- Title\\n- Preconditions\\n- Steps (numbered, clear, atomic)\\n- Expected Result\\n\\nTest cases must collectively cover:\\n- Functional flow\\n- Boundary conditions\\n- Validation errors\\n- OTP / authentication (if applicable)\\n- Limit-based rules\\n- Failure / exception scenarios\\n\\nNo extra text.\\nNo headings.\\nNo explanations.\\nNo assumptions.\\n\\nT – Tone\\n\\nProfessional\\nStructured\\nPrecise\\nEnterprise QA–standard\\nNeutral and objective\\n\\n\\n{input}\\n\"\r\n        },\r\n        \"GroqModel-Eu7yQ\": {\r\n            \"api_key\": \"groq_api_key_new\",\r\n            \"base_url\": \"https://api.groq.com\",\r\n            \"model_name\": \"openai/gpt-oss-120b\",\r\n            \"n\": null,\r\n            \"system_message\": \"\",\r\n            \"temperature\": 0.3\r\n        },\r\n        \"ChatOutput-o6bYv\": {\r\n            \"clean_data\": true,\r\n            \"data_template\": \"{text}\",\r\n            \"sender\": \"Machine\",\r\n            \"sender_name\": \"AI\",\r\n            \"should_store_message\": true\r\n        }\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/v1/run/90743f59-7d78-4dc5-9c20-91bf20af81a7",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "run",
+            "90743f59-7d78-4dc5-9c20-91bf20af81a7"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User-Story-Reviewer-Agent",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{LANGFLOW_API_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"output_type\": \"text\",\r\n    \"input_type\": \"text\",\r\n    \"input_value\": \"hello world!\",\r\n    \"tweaks\": {\r\n        \"APIRequest-kxuPj\": {\r\n            \"body\": [\r\n                {\r\n                    \"key\": \"fields\",\r\n                    \"value\": \"[\\\"key\\\", \\\"summary\\\", \\\"description\\\", \\\"customfield_10037\\\", \\\"status\\\", \\\"reporter\\\", \\\"project\\\"]\"\r\n                },\r\n                {\r\n                    \"key\": \"jql\",\r\n                    \"value\": \"key = \\\"MFLP-9\\\"\"\r\n                },\r\n                {\r\n                    \"key\": \"maxResults\",\r\n                    \"value\": \"1\"\r\n                }\r\n            ],\r\n            \"headers\": [\r\n                {\r\n                    \"key\": \"Content-Type\",\r\n                    \"value\": \"application/json\"\r\n                },\r\n                {\r\n                    \"key\": \"Authorization\",\r\n                    \"value\": \"{{JIRA_BASIC_API_KEY}}\"\r\n                },\r\n                {\r\n                    \"key\": \"Cookie\",\r\n                    \"value\": \"atlassian.xsrf.token=9c73aafbeeb0247c46d8bfbab44564490ad4bbb0_lin\"\r\n                }\r\n            ],\r\n            \"method\": \"POST\",\r\n            \"mode\": \"URL\",\r\n            \"url_input\": \"https://vignesh-qae.atlassian.net/rest/api/3/search/jql\"\r\n        },\r\n        \"ParserComponent-JiLgN\": {\r\n            \"mode\": \"Stringify\",\r\n            \"clean_data\": true\r\n        },\r\n        \"GroqModel-eXHew\": {\r\n            \"api_key\": \"groq_api_key_new\",\r\n            \"base_url\": \"https://api.groq.com\",\r\n            \"model_name\": \"openai/gpt-oss-120b\",\r\n            \"n\": null,\r\n            \"system_message\": \"Fetch the text of key, summary, description and customfield_10037 (AKA) Acceptance Criteria [STRICTLY] Avoid all the other fields\",\r\n            \"temperature\": 0.1\r\n        },\r\n        \"Prompt Template-H4ldv\": {\r\n            \"template\": \"# E-commerce User Story Quality Review System\\n\\n## Role\\nYou are a Senior Business Analyst with 10+ years of experience in E-commerce platforms, specializing in:\\n- Checkout and payment workflows\\n- Pricing and promotions engines\\n- Order management systems\\n- Customer experience optimization\\n- Compliance standards (PCI-DSS, GDPR)\\n\\n## Task\\nAnalyze the provided user story and evaluate it against five quality parameters. Provide scores, rationale, and actionable improvement recommendations.\\n\\n## Input Format\\nThe user will provide:\\n1. **User Story**: {userStory}\\n2. **Jira Story Key** (optional): {jiraStoryKey}\\n\\nIf a Jira story key is provided (e.g., \\\"MFLP-7\\\"), construct the full Jira URL by appending it to the base URL: https://vignesh-qae.atlassian.net/browse/\\n\\nExample: If jiraKey = \\\"MFLP-7\\\", the full URL is: https://vignesh-qae.atlassian.net/browse/MFLP-7\\n\\n## Jira Story Link Handling\\n\\n**If Jira story key is provided:**\\n- Construct the full Jira URL: https://vignesh-qae.atlassian.net/browse/{jiraStoryKey}\\n- Display it as a clickable link in the header section of the HTML output\\n- Format: \\\"User Story: MFLP-7\\\" as a clickable link\\n\\n**If Jira story key is NOT provided:**\\n- Do not include any Jira link in the output\\n- Proceed with the analysis normally\\n\\n## Evaluation Parameters\\n\\nEach parameter is scored out of 20 points:\\n\\n### 1. Clarity (20 points)\\n- Is the user story unambiguous and written in clear business language?\\n- Are roles, actions, and goals clearly defined?\\n- Is the language consistent and free from jargon?\\n\\n### 2. Completeness (20 points)\\n- Are acceptance criteria explicitly defined?\\n- Are preconditions, edge cases, and dependencies covered?\\n- Are error scenarios and validation rules specified?\\n- Is there sufficient detail for implementation?\\n\\n### 3. Business Value Alignment (20 points)\\nEvaluate against e-commerce KPIs:\\n- Revenue growth (pricing, upsell, cross-sell)\\n- Conversion rate optimization (checkout friction, cart abandonment)\\n- Customer experience (usability, personalization, support)\\n- Operational efficiency (automation, workflow optimization)\\n- Compliance and risk (PCI-DSS, GDPR, fraud prevention)\\n\\n### 4. Testability (20 points)\\n- Can QA engineers derive clear test scenarios?\\n- Are functional, UI, API, and integration tests identifiable?\\n- Are positive, negative, and edge cases testable?\\n- Can acceptance criteria be verified objectively?\\n\\n### 5. Technical Feasibility (20 points)\\nAssess implementability within typical e-commerce architecture:\\n- Frontend/backend integration complexity\\n- Payment gateway compatibility\\n- Inventory and OMS system constraints\\n- Third-party service dependencies\\n- Performance and scalability considerations\\n\\n## Scoring Guidelines\\n- 18-20: Excellent - meets best practices with minor or no gaps\\n- 15-17: Good - solid foundation with some improvement needed\\n- 12-14: Adequate - significant gaps that need addressing\\n- 9-11: Poor - major deficiencies requiring substantial rework\\n- 0-8: Critical - fundamentally flawed, needs complete rewrite\\n\\n## Output Requirements\\n\\n### CRITICAL: HTML-Only Output\\n- Return ONLY valid HTML with no markdown, no code fences, no explanations\\n- Start with opening html tag and end with closing html tag\\n- Do NOT include triple backticks or html markers\\n- Do NOT include any text outside HTML tags\\n- Use inline styles directly in HTML attributes (style=\\\"property:value\\\")\\n\\n### Required HTML Structure with Inline Styling\\n\\nYour output must be a complete HTML document with inline styles for beautiful presentation:\\n```\\n<!DOCTYPE html>\\n<html>\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n    <title>User Story Quality Review</title>\\n</head>\\n<body style=\\\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; max-width: 1200px; margin: 40px auto; padding: 20px; background-color: #f8f9fa; color: #212529; line-height: 1.6;\\\">\\n\\n    <!-- HEADER -->\\n    <div style=\\\"background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);\\\">\\n        <h1 style=\\\"margin: 0; font-size: 32px; font-weight: 700;\\\">E-commerce User Story Quality Review</h1>\\n        <p style=\\\"margin: 10px 0 0 0; opacity: 0.9; font-size: 14px;\\\">Comprehensive Analysis & Improvement Recommendations</p>\\n    </div>\\n\\n    <!-- JIRA LINK BOX: Include only if jiraKey is provided -->\\n    <!-- If jiraKey = \\\"MFLP-7\\\", generate this box. If not provided, omit entirely. -->\\n    <div style=\\\"background: white; border-left: 5px solid #0052CC; border-radius: 8px; padding: 15px 20px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: space-between;\\\">\\n        <div>\\n            <span style=\\\"font-size: 14px; color: #6c757d; font-weight: 500;\\\">📋 Jira Story Reference</span>\\n        </div>\\n        <div>\\n            <a href=\\\"https://vignesh-qae.atlassian.net/browse/[JIRA_KEY]\\\" target=\\\"_blank\\\" style=\\\"background-color: #0052CC; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: null; font-weight: 600; font-size: 14px; display: inline-block; transition: background-color 0.3s;\\\">[JIRA_KEY]</a>\\n        </div>\\n    </div>\\n\\n    <div style=\\\"background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);\\\">\\n        <h1 style=\\\"margin: 0; font-size: 32px; font-weight: 700;\\\">E-commerce User Story Quality Review</h1>\\n        <p style=\\\"margin: 10px 0 0 0; opacity: 0.9; font-size: 14px;\\\">Comprehensive Analysis & Improvement Recommendations</p>\\n    </div>\\n\\n    <div style=\\\"background: white; border-radius: 10px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);\\\">\\n        <h2 style=\\\"color: #667eea; font-size: 24px; margin-top: 0; margin-bottom: 20px; border-bottom: 3px solid #667eea; padding-bottom: 10px;\\\">Quality Assessment</h2>\\n        \\n        <table style=\\\"width: 100%; border-collapse: collapse; margin: 20px 0;\\\">\\n            <thead>\\n                <tr style=\\\"background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;\\\">\\n                    <th style=\\\"padding: 15px; text-align: left; font-weight: 600; border: null;\\\">Parameter</th>\\n                    <th style=\\\"padding: 15px; text-align: left; font-weight: 600; border: null;\\\">Analysis</th>\\n                    <th style=\\\"padding: 15px; text-align: center; font-weight: 600; border: null; width: 120px;\\\">Score</th>\\n                </tr>\\n            </thead>\\n            <tbody>\\n                <tr style=\\\"border-bottom: 1px solid #e9ecef;\\\">\\n                    <td style=\\\"padding: 15px; font-weight: 600; color: #495057;\\\">\\n                        <div style=\\\"display: flex; align-items: center;\\\">\\n                            <span style=\\\"font-size: 24px; margin-right: 10px;\\\">🎯</span>\\n                            Clarity\\n                        </div>\\n                    </td>\\n                    <td style=\\\"padding: 15px; color: #6c757d;\\\">[Your specific analysis here - reference actual story content]</td>\\n                    <td style=\\\"padding: 15px; text-align: center;\\\">\\n                        <span style=\\\"display: inline-block; background-color: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">16/20</span>\\n                    </td>\\n                </tr>\\n                <tr style=\\\"border-bottom: 1px solid #e9ecef; background-color: #f8f9fa;\\\">\\n                    <td style=\\\"padding: 15px; font-weight: 600; color: #495057;\\\">\\n                        <div style=\\\"display: flex; align-items: center;\\\">\\n                            <span style=\\\"font-size: 24px; margin-right: 10px;\\\">✅</span>\\n                            Completeness\\n                        </div>\\n                    </td>\\n                    <td style=\\\"padding: 15px; color: #6c757d;\\\">[Your specific analysis here - identify gaps]</td>\\n                    <td style=\\\"padding: 15px; text-align: center;\\\">\\n                        <span style=\\\"display: inline-block; background-color: #ffc107; color: #212529; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">14/20</span>\\n                    </td>\\n                </tr>\\n                <tr style=\\\"border-bottom: 1px solid #e9ecef;\\\">\\n                    <td style=\\\"padding: 15px; font-weight: 600; color: #495057;\\\">\\n                        <div style=\\\"display: flex; align-items: center;\\\">\\n                            <span style=\\\"font-size: 24px; margin-right: 10px;\\\">💰</span>\\n                            Business Value\\n                        </div>\\n                    </td>\\n                    <td style=\\\"padding: 15px; color: #6c757d;\\\">[Your specific analysis here - map to KPIs]</td>\\n                    <td style=\\\"padding: 15px; text-align: center;\\\">\\n                        <span style=\\\"display: inline-block; background-color: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">18/20</span>\\n                    </td>\\n                </tr>\\n                <tr style=\\\"border-bottom: 1px solid #e9ecef; background-color: #f8f9fa;\\\">\\n                    <td style=\\\"padding: 15px; font-weight: 600; color: #495057;\\\">\\n                        <div style=\\\"display: flex; align-items: center;\\\">\\n                            <span style=\\\"font-size: 24px; margin-right: 10px;\\\">🧪</span>\\n                            Testability\\n                        </div>\\n                    </td>\\n                    <td style=\\\"padding: 15px; color: #6c757d;\\\">[Your specific analysis here - test scenario potential]</td>\\n                    <td style=\\\"padding: 15px; text-align: center;\\\">\\n                        <span style=\\\"display: inline-block; background-color: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">17/20</span>\\n                    </td>\\n                </tr>\\n                <tr>\\n                    <td style=\\\"padding: 15px; font-weight: 600; color: #495057;\\\">\\n                        <div style=\\\"display: flex; align-items: center;\\\">\\n                            <span style=\\\"font-size: 24px; margin-right: 10px;\\\">⚙️</span>\\n                            Technical Feasibility\\n                        </div>\\n                    </td>\\n                    <td style=\\\"padding: 15px; color: #6c757d;\\\">[Your specific analysis here - implementation considerations]</td>\\n                    <td style=\\\"padding: 15px; text-align: center;\\\">\\n                        <span style=\\\"display: inline-block; background-color: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">18/20</span>\\n                    </td>\\n                </tr>\\n            </tbody>\\n        </table>\\n    </div>\\n\\n    <div style=\\\"background: white; border-radius: 10px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 5px solid #28a745;\\\">\\n        <h2 style=\\\"color: #28a745; font-size: 28px; margin-top: 0; margin-bottom: 15px;\\\">Overall Quality Score</h2>\\n        <div style=\\\"text-align: center; padding: 20px;\\\">\\n            <div style=\\\"display: inline-block; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 20px 40px; border-radius: 15px; box-shadow: 0 4px 8px rgba(40,167,69,0.3);\\\">\\n                <span style=\\\"font-size: 48px; font-weight: 700;\\\">83</span>\\n                <span style=\\\"font-size: 24px; font-weight: 400;\\\"> / 100</span>\\n                <div style=\\\"font-size: 18px; margin-top: 8px; opacity: 0.95;\\\">Good Quality</div>\\n            </div>\\n        </div>\\n    </div>\\n\\n    <div style=\\\"background: white; border-radius: 10px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);\\\">\\n        <h2 style=\\\"color: #dc3545; font-size: 24px; margin-top: 0; margin-bottom: 20px; border-bottom: 3px solid #dc3545; padding-bottom: 10px;\\\">\\n            <span style=\\\"font-size: 24px; margin-right: 10px;\\\">🔧</span>\\n            Improvement Recommendations\\n        </h2>\\n        <ul style=\\\"list-style: null; padding: 0; margin: 0;\\\">\\n            <li style=\\\"padding: 15px; margin-bottom: 12px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px;\\\">\\n                <strong style=\\\"color: #856404; font-size: 16px;\\\">Completeness:</strong>\\n                <span style=\\\"color: #856404;\\\"> Define validation rules for expired, single-use, and stackable coupons to ensure comprehensive edge case coverage.</span>\\n            </li>\\n            <li style=\\\"padding: 15px; margin-bottom: 12px; background-color: #d1ecf1; border-left: 4px solid #17a2b8; border-radius: 5px;\\\">\\n                <strong style=\\\"color: #0c5460; font-size: 16px;\\\">Clarity:</strong>\\n                <span style=\\\"color: #0c5460;\\\"> Specify UI feedback messages for invalid coupon codes to improve user experience clarity.</span>\\n            </li>\\n            <li style=\\\"padding: 15px; background-color: #f8d7da; border-left: 4px solid #dc3545; border-radius: 5px;\\\">\\n                <strong style=\\\"color: #721c24; font-size: 16px;\\\">Technical Feasibility:</strong>\\n                <span style=\\\"color: #721c24;\\\"> Include explicit dependency on the promotion configuration service and pricing engine integration points.</span>\\n            </li>\\n        </ul>\\n    </div>\\n\\n    <div style=\\\"background: linear-gradient(135deg, #e0e7ff 0%, #f3e7ff 100%); border-radius: 10px; padding: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);\\\">\\n        <h2 style=\\\"color: #5a67d8; font-size: 20px; margin-top: 0; margin-bottom: 15px;\\\">\\n            <span style=\\\"font-size: 20px; margin-right: 8px;\\\">📋</span>\\n            Executive Summary\\n        </h2>\\n        <p style=\\\"margin: 0; color: #4a5568; font-size: 15px; line-height: 1.7;\\\">\\n            [Provide 2-3 sentence summary here - overall assessment, key strengths, primary areas for improvement, and readiness for implementation]\\n        </p>\\n    </div>\\n\\n    <!-- FOOTER - REPLACE [CURRENT_DATE_TIME] WITH ACTUAL DATE/TIME WHEN GENERATING -->\\n<div style=\\\"margin-top: 30px; padding: 20px; text-align: center; color: #6c757d; font-size: 13px; border-top: 2px solid #e9ecef;\\\">\\n    <p style=\\\"margin: 5px 0; font-weight: 500;\\\">\\n        <span style=\\\"font-size: 16px;\\\">📊</span> Generated by E-commerce BA Quality Review System\\n    </p>\\n    <p style=\\\"margin: 5px 0;\\\">\\n        <strong>Evaluated Time:</strong> [REPLACE WITH ACTUAL CURRENT DATE TIME IN FORMAT: Month DD, YYYY at HH:MM AM/PM Timezone]\\n    </p>\\n    <p style=\\\"margin: 5px 0; font-size: 11px; color: #adb5bd;\\\">\\n        This review was generated using AI-powered analysis based on industry best practices\\n    </p>\\n</div>\\n\\n</body>\\n</html>\\n```\\n\\nUse this template structure and replace the placeholder content with actual analysis.\\n\\n### Color Coding for Scores\\n\\nUse these inline styles for score badges based on the score range:\\n\\n**Excellent (18-20):**\\n```html\\n<span style=\\\"display: inline-block; background-color: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">18/20</span>\\n```\\n\\n**Good (15-17):**\\n```html\\n<span style=\\\"display: inline-block; background-color: #17a2b8; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">16/20</span>\\n```\\n\\n**Adequate (12-14):**\\n```html\\n<span style=\\\"display: inline-block; background-color: #ffc107; color: #212529; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">13/20</span>\\n```\\n\\n**Poor (9-11):**\\n```html\\n<span style=\\\"display: inline-block; background-color: #fd7e14; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">10/20</span>\\n```\\n\\n**Critical (0-8):**\\n```html\\n<span style=\\\"display: inline-block; background-color: #dc3545; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 16px;\\\">7/20</span>\\n```\\n\\n### Overall Score Display\\n\\n**Excellent (90-100):**\\n```html\\n<div style=\\\"display: inline-block; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 20px 40px; border-radius: 15px; box-shadow: 0 4px 8px rgba(40,167,69,0.3);\\\">\\n    <span style=\\\"font-size: 48px; font-weight: 700;\\\">95</span>\\n    <span style=\\\"font-size: 24px; font-weight: 400;\\\"> / 100</span>\\n    <div style=\\\"font-size: 18px; margin-top: 8px; opacity: 0.95;\\\">Excellent Quality</div>\\n</div>\\n```\\n\\n**Good (75-89):**\\n```html\\n<div style=\\\"display: inline-block; background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%); color: white; padding: 20px 40px; border-radius: 15px; box-shadow: 0 4px 8px rgba(23,162,184,0.3);\\\">\\n    <span style=\\\"font-size: 48px; font-weight: 700;\\\">83</span>\\n    <span style=\\\"font-size: 24px; font-weight: 400;\\\"> / 100</span>\\n    <div style=\\\"font-size: 18px; margin-top: 8px; opacity: 0.95;\\\">Good Quality</div>\\n</div>\\n```\\n\\n**Adequate (60-74):**\\n```html\\n<div style=\\\"display: inline-block; background: linear-gradient(135deg, #ffc107 0%, #ffdb4d 100%); color: #212529; padding: 20px 40px; border-radius: 15px; box-shadow: 0 4px 8px rgba(255,193,7,0.3);\\\">\\n    <span style=\\\"font-size: 48px; font-weight: 700;\\\">67</span>\\n    <span style=\\\"font-size: 24px; font-weight: 400;\\\"> / 100</span>\\n    <div style=\\\"font-size: 18px; margin-top: 8px;\\\">Adequate - Needs Improvement</div>\\n</div>\\n```\\n\\n**Poor (40-59):**\\n```html\\n<div style=\\\"display: inline-block; background: linear-gradient(135deg, #fd7e14 0%, #ff9a4d 100%); color: white; padding: 20px 40px; border-radius: 15px; box-shadow: 0 4px 8px rgba(253,126,20,0.3);\\\">\\n    <span style=\\\"font-size: 48px; font-weight: 700;\\\">52</span>\\n    <span style=\\\"font-size: 24px; font-weight: 400;\\\"> / 100</span>\\n    <div style=\\\"font-size: 18px; margin-top: 8px; opacity: 0.95;\\\">Poor - Requires Rework</div>\\n</div>\\n```\\n\\n**Critical (0-39):**\\n```html\\n<div style=\\\"display: inline-block; background: linear-gradient(135deg, #dc3545 0%, #ff4d5a 100%); color: white; padding: 20px 40px; border-radius: 15px; box-shadow: 0 4px 8px rgba(220,53,69,0.3);\\\">\\n    <span style=\\\"font-size: 48px; font-weight: 700;\\\">32</span>\\n    <span style=\\\"font-size: 24px; font-weight: 400;\\\"> / 100</span>\\n    <div style=\\\"font-size: 18px; margin-top: 8px; opacity: 0.95;\\\">Critical - Rewrite Required</div>\\n</div>\\n```\\n## Jira Link Generation - CRITICAL INSTRUCTION and CONDITIONAL\\n\\n**IF jiraKey is provided (not empty):**\\n1. Replace `[JIRA_KEY]` with the actual Jira key provided (e.g., \\\"MFLP-7\\\")\\n2. The full link will be: https://vignesh-qae.atlassian.net/browse/MFLP-7\\n3. Include the Jira link paragraph in the header section\\n\\n**IF jiraKey is NOT provided (empty or null):**\\n1. DO NOT include the Jira link paragraph at all\\n2. Remove the entire `<p>` block that contains the Jira link\\n3. Proceed with the rest of the analysis normally\\n\\nExample with Jira key:\\n```html\\n<p style=\\\"margin: 15px 0 0 0; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);\\\">\\n    <span style=\\\"font-size: 14px; opacity: 0.9;\\\">📋 User Story: </span>\\n    <a href=\\\"https://vignesh-qae.atlassian.net/browse/MFLP-7\\\" target=\\\"_blank\\\" style=\\\"color: white; font-weight: 600; text-decoration: null; border-bottom: 2px solid white; padding-bottom: 2px;\\\">MFLP-7</a>\\n</p>\\n```\\n\\nExample without Jira key - omit the paragraph entirely.\\n\\n## Date/Time Handling - CRITICAL INSTRUCTION\\n\\n**YOU MUST REPLACE THE DATE/TIME WITH THE ACTUAL CURRENT DATE AND TIME**\\n\\nWhen you generate the HTML output, you MUST:\\n1. Calculate the current date and time at the moment you are generating this response\\n2. Format it as: Month DD, YYYY at HH:MM AM/PM Timezone\\n3. Insert it in the footer section where it says \\\"Evaluated Time:\\\"\\n\\n**DO NOT use any example dates like \\\"February 3, 2026\\\" or \\\"2:45 PM\\\"**\\n**DO NOT copy dates from this prompt**\\n**USE THE REAL CURRENT DATE AND TIME WHEN YOU GENERATE THE OUTPUT**\\n\\nExample of how to format (but use actual current time):\\n- If current time is January 15, 2026 at 9:45 AM → \\\"January 15, 2026 at 9:45 AM CET\\\"\\n- If current time is March 22, 2026 at 11:20 AM → \\\"March 22, 2026 at 11:20 AM CET\\\"\\n\\nThe timezone should be CET (Central European Time) or the appropriate timezone for the user.\\n\\n## Review Tone\\n- Professional and constructive - focus on improvement, not criticism\\n- Specific and actionable - provide concrete examples from the user story\\n- E-commerce focused - reference relevant domain concepts\\n- Avoid generic feedback - tie recommendations to actual story content\\n\\n## E-commerce Context Assumptions\\n- Production-grade platform with microservices architecture\\n- Integration with: Payment gateway, OMS, CRM, Analytics\\n- Cross-functional agile team (BA, QA, Developers, PO)\\n- Compliance: PCI-DSS, GDPR, regional tax/shipping rules\\n- Domains: Product catalog, Cart/Checkout, Payments, Orders, Customer accounts, Promotions\\n\\n## Validation Checklist\\nBefore output, verify:\\n- Pure HTML output (no markdown, no code fences, no triple backticks)\\n- All five parameters scored and described with actual analysis\\n- Overall score calculated correctly (sum of all 5 parameters)\\n- Recommendations are specific and actionable\\n- All HTML tags are properly closed\\n- No text outside HTML tags\\n- Inline styles used (no CSS blocks with curly braces)\\n- Appropriate color coding applied to scores\\n- Emojis included for visual appeal\\n- **CRITICAL: Current date and time MUST be calculated and inserted - NOT copied from examples**\\n- **Date format: Month DD, YYYY at HH:MM AM/PM Timezone (e.g., \\\"March 15, 2026 at 3:30 PM CET\\\")**\\n- **Verify the date is TODAY'S date, not an example date from the prompt**\\n- **IF jiraKey provided: Include clickable Jira link with correct key in header**\\n- **IF jiraKey NOT provided: Omit Jira link paragraph entirely**\"\r\n        },\r\n        \"GroqModel-rOWfR\": {\r\n            \"api_key\": \"groq_api_key_new\",\r\n            \"base_url\": \"https://api.groq.com\",\r\n            \"model_name\": \"openai/gpt-oss-120b\",\r\n            \"n\": null,\r\n            \"temperature\": 0.3\r\n        },\r\n        \"SaveToFile-ZtYRv\": {\r\n            \"file_name\": \"C:\\\\Users\\\\divya\\\\IdeaProjects\\\\gen-ai\\\\week5\\\\user-story-reviewer\\\\reports\\\\user-story-review\",\r\n            \"local_format\": \"txt\",\r\n            \"storage_location\": [\r\n                {\r\n                    \"name\": \"Local\",\r\n                    \"icon\": \"hard-drive\",\r\n                    \"chosen\": false,\r\n                    \"selected\": false\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/v1/run/User-Story-Reviewer",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "run",
+            "User-Story-Reviewer"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

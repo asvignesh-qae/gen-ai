@@ -17,7 +17,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "newman-test": "npx newman run \"week2/Week2-HA/groq.postman_collection.json\" -e \"week2/Week2-HA/groq.postman_environment.json\" -r htmlextra --reporter-htmlextra-skipEnvironmentVars \"GROQ_API_KEY\" --reporter-htmlextra-skipHeaders \"Authorization\" --reporter-htmlextra-displayProgressBar",
-    "newman:test:local": "npx newman run \"week2/Week2-HA/groq.postman_collection.json\" -e \"week2/Week2-HA/groq.postman_environment_local.json\" -r htmlextra --reporter-htmlextra-skipEnvironmentVars \"GROQ_API_KEY\" --reporter-htmlextra-skipHeaders \"Authorization\""
+    "newman:test:local": "npx newman run \"week2/Week2-HA/groq.postman_collection.json\" -e \"week2/Week2-HA/groq.postman_environment_local.json\" -r htmlextra --reporter-htmlextra-skipEnvironmentVars \"GROQ_API_KEY\" --reporter-htmlextra-skipHeaders \"Authorization\"",
+    "newman:langflow:local": "npx newman run \"week5/ha-langflow-agents/LangFlow-HA.postman_collection\" --env-var \"BASE_URL=http://localhost:7860\" --env-var \"LANGFLOW_API_KEY=your-api-key-here\" --env-var \"JIRA_BASIC_API_KEY=your-jira-key-here\" --verbose -r htmlextra --reporter-htmlextra-skipEnvironmentVars \"GROQ_API_KEY\" --reporter-htmlextra-skipHeaders \"Authorization\""
   },
   "dependencies": {
     "dotenv": "^17.2.3",
